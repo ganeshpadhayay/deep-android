@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.ganesh.deep_android.R
 import com.example.ganesh.deep_android.coroutines.data.TitleRepository
 import com.example.ganesh.deep_android.coroutines.data.getDatabase
@@ -28,7 +28,7 @@ class CoroutinesExampleActivity : AppCompatActivity() {
         // Get MainViewModel by passing a database to the factory
         val database = getDatabase(this)
         val repository = TitleRepository(getNetworkService(), database.titleDao)
-        val viewModel = ViewModelProviders.of(this, CoroutinesExampleViewModel.FACTORY(repository)).get(CoroutinesExampleViewModel::class.java)
+        val viewModel = ViewModelProvider(this, CoroutinesExampleViewModel.FACTORY(repository)).get(CoroutinesExampleViewModel::class.java)
 
         // When rootLayout is clicked call onMainViewClicked in ViewModel
         rootLayout.setOnClickListener {

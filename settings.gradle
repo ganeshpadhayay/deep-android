@@ -1,2 +1,3 @@
+include ':myktxlibrary'
 include ':app'
 rootProject.name = "deep-android"

@@ -2,22 +2,31 @@ package com.example.ganesh.deep_android
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ganesh.deep_android.coroutines.ui.CoroutinesExampleActivity
 import com.example.ganesh.deep_android.databinding.DataBindingExampleActivity
+import com.example.ganesh.deep_android.ktx.KTXExampleActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initClickListeners()
+    }
 
-        button_data_binding?.setOnClickListener {
-            startActivity(Intent(this, DataBindingExampleActivity::class.java))
-        }
+    private fun initClickListeners() {
+        button_data_binding.setOnClickListener(this)
+        button_coroutines.setOnClickListener(this)
+        button_kotlin_extensions.setOnClickListener(this)
+    }
 
-        button_coroutines?.setOnClickListener {
-            startActivity(Intent(this, CoroutinesExampleActivity::class.java))
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.button_data_binding -> startActivity(Intent(this, DataBindingExampleActivity::class.java))
+            R.id.button_coroutines -> startActivity(Intent(this, CoroutinesExampleActivity::class.java))
+            R.id.button_kotlin_extensions -> startActivity(Intent(this, KTXExampleActivity::class.java))
         }
     }
 }

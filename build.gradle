@@ -14,15 +14,21 @@ buildscript {
         def gson_version = '2.8.6'
         def junit_version = '4.12'
         def lifecycle_version = '2.1.0'
-        def livedata_version = '2.2.0-rc02'
+        def lifecycle_extensions = "2.3.0-rc01"
+        def lifecycle_runtime_ktx_version = "2.3.0-rc01"
         def material_version = '1.0.0'
         def retrofit_gson_version = '2.6.2'
         def retrofit_version = '2.6.2'
         def truth_version = '1.0'
         def room_version = '2.2.2'
         def work_version = '2.2.0'
+        def corektx_version = "1.3.2"
+        def location_version = "17.1.0"
 
         libraries = [
+                //multi dex
+                "androidx.multidex:multidex:2.0.1",
+
                 // Kotlin standard library
                 "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
 
@@ -37,8 +43,9 @@ buildscript {
 
                 // ViewModel and LiveData
                 "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
-                "androidx.lifecycle:lifecycle-livedata-ktx:$livedata_version",
                 "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+                "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_extensions",
+                "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime_ktx_version",
 
                 // WorkManager
                 "androidx.work:work-runtime-ktx:$work_version",
@@ -49,7 +56,16 @@ buildscript {
                 // network & serialization
                 "com.google.code.gson:gson:$gson_version",
                 "com.squareup.retrofit2:converter-gson:$retrofit_gson_version",
-                "com.squareup.retrofit2:retrofit:$retrofit_version",
+                "com.squareup.retrofit2:retrofit:$retrofit_version"
+        ]
+
+        ktxlib_libraries_impl = [
+                "androidx.core:core-ktx:$corektx_version"
+        ]
+
+        ktxlib_libraries_api = [
+                "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version",
+                "com.google.android.gms:play-services-location:$location_version"
         ]
 
         librariesKapt = [
@@ -95,6 +111,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url "http://dl.bintray.com/kotlin/kotlin-eap"
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.3"
@@ -109,6 +128,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url "http://dl.bintray.com/kotlin/kotlin-eap"
+        }
     }
 }
 

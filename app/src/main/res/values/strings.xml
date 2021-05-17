@@ -14,5 +14,6 @@
 
     <string name="coroutines_example">Coroutines Example</string>
     <string name="click_to_start">Click to start</string>
+    <string name="kotlin_extensions_example">Kotlin Extensions Example</string>
 
 </resources>
