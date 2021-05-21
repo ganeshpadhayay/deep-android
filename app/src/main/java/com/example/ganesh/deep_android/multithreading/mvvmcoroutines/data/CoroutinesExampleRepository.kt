@@ -1,11 +1,11 @@
-package com.example.ganesh.deep_android.coroutines.data
+package com.example.ganesh.deep_android.multithreading.mvvmcoroutines.data
 
 /**
  * Created by Ganesh Padhayay on 17/05/21.
  */
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.example.ganesh.deep_android.coroutines.network.MainNetwork
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.network.MainNetwork
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

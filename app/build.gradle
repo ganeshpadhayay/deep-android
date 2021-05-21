@@ -44,7 +44,6 @@ dependencies {
     kapt librariesKapt
     debugImplementation librariesDebug
 
-    testImplementation testLibraries
     androidTestImplementation androidTestLibraries
 
     implementation project(":myktxlibrary")

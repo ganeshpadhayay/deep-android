@@ -15,5 +15,8 @@
     <string name="coroutines_example">Coroutines Example</string>
     <string name="click_to_start">Click to start</string>
     <string name="kotlin_extensions_example">Kotlin Extensions Example</string>
+    <string name="multithreading">Multithreading</string>
+    <string name="basic_coroutines_in_mvvm">Coroutines MVVM Example</string>
+    <string name="coroutines_basics">Coroutines Basics</string>
 
 </resources>

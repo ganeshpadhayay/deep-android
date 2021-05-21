@@ -1,4 +1,4 @@
-package com.example.ganesh.deep_android.coroutines.util
+package com.example.ganesh.deep_android.multithreading.mvvmcoroutines.util
 
 /**
  * Created by Ganesh Padhayay on 17/05/21.

@@ -1,4 +1,4 @@
-package com.example.ganesh.deep_android.coroutines
+package com.example.ganesh.deep_android.multithreading.mvvmcoroutines
 
 import android.app.Application
 import androidx.work.Configuration
@@ -7,7 +7,7 @@ import androidx.work.ExistingPeriodicWorkPolicy.KEEP
 import androidx.work.NetworkType.UNMETERED
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import com.example.ganesh.deep_android.coroutines.workmanager.CoroutinesExampleRefreshDataWorker
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.workmanager.CoroutinesExampleRefreshDataWorker
 import java.util.concurrent.TimeUnit
 
 /**

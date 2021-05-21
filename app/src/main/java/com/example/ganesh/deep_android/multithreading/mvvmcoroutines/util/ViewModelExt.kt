@@ -1,4 +1,4 @@
-package com.example.ganesh.deep_android.coroutines.util
+package com.example.ganesh.deep_android.multithreading.mvvmcoroutines.util
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

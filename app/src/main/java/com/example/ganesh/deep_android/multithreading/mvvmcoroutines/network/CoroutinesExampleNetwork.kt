@@ -1,9 +1,9 @@
-package com.example.ganesh.deep_android.coroutines.network
+package com.example.ganesh.deep_android.multithreading.mvvmcoroutines.network
 
 /**
  * Created by Ganesh Padhayay on 17/05/21.
  */
-import com.example.ganesh.deep_android.coroutines.util.SkipNetworkInterceptor
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.util.SkipNetworkInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -1,15 +1,15 @@
-package com.example.ganesh.deep_android.coroutines.workmanager
+package com.example.ganesh.deep_android.multithreading.mvvmcoroutines.workmanager
 
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.ListenableWorker
 import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
-import com.example.ganesh.deep_android.coroutines.data.TitleRefreshError
-import com.example.ganesh.deep_android.coroutines.data.TitleRepository
-import com.example.ganesh.deep_android.coroutines.data.getDatabase
-import com.example.ganesh.deep_android.coroutines.network.MainNetwork
-import com.example.ganesh.deep_android.coroutines.network.getNetworkService
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.data.TitleRefreshError
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.data.TitleRepository
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.data.getDatabase
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.network.MainNetwork
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.network.getNetworkService
 
 /**
  * Created by Ganesh Padhayay on 17/05/21.

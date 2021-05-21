@@ -1,12 +1,12 @@
-package com.example.ganesh.deep_android.coroutines.ui
+package com.example.ganesh.deep_android.multithreading.mvvmcoroutines.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ganesh.deep_android.coroutines.data.TitleRefreshError
-import com.example.ganesh.deep_android.coroutines.data.TitleRepository
-import com.example.ganesh.deep_android.coroutines.util.singleArgViewModelFactory
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.data.TitleRefreshError
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.data.TitleRepository
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.util.singleArgViewModelFactory
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

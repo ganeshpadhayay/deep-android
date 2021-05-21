@@ -1,4 +1,4 @@
-package com.example.ganesh.deep_android.coroutines.ui
+package com.example.ganesh.deep_android.multithreading.mvvmcoroutines.ui
 
 import android.os.Bundle
 import android.view.View
@@ -9,9 +9,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.ganesh.deep_android.R
-import com.example.ganesh.deep_android.coroutines.data.TitleRepository
-import com.example.ganesh.deep_android.coroutines.data.getDatabase
-import com.example.ganesh.deep_android.coroutines.network.getNetworkService
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.data.TitleRepository
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.data.getDatabase
+import com.example.ganesh.deep_android.multithreading.mvvmcoroutines.network.getNetworkService
 import com.google.android.material.snackbar.Snackbar
 
 class CoroutinesExampleActivity : AppCompatActivity() {

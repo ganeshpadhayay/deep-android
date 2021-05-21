@@ -5,7 +5,7 @@
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".coroutines.ui.CoroutinesExampleActivity">
+    tools:context=".multithreading.mvvmcoroutines.ui.CoroutinesExampleActivity">
 
     <TextView
         android:id="@+id/title"
