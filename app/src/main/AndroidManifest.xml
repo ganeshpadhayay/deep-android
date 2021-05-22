@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".multithreading.coroutinesbasic.CoroutinesBasicActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +23,10 @@
         <activity android:name=".databinding.DataBindingExampleActivity" />
         <activity android:name=".multithreading.mvvmcoroutines.ui.CoroutinesExampleActivity" />
         <activity android:name=".ktx.KTXExampleActivity" />
-        <activity android:name=".multithreading.MultiThreadingActivity" /> <!-- this is to avoid the double initialization of work manager -->
+        <activity android:name=".multithreading.MultiThreadingActivity" />
+
+
+        <!-- this is to avoid the double initialization of work manager -->
         <provider
             android:name="androidx.work.impl.WorkManagerInitializer"
             android:authorities="${applicationId}.workmanager-init"

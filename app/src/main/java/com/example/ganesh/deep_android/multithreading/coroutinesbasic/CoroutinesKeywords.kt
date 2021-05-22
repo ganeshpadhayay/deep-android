@@ -1,15 +1,17 @@
 package com.example.ganesh.deep_android.multithreading.coroutinesbasic
 
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlin.concurrent.thread
 
 /**
  * Created by Ganesh Padhayay on 22/05/21.
  */
 
-/*
-EXAMPLE 1: SIMPLE EXAMPLE OF runBlocking scope, launch, delay
+
+//EXAMPLE 1: SIMPLE EXAMPLE OF runBlocking scope, launch, delay
 fun main() = runBlocking {
     launch {
         printWorld()
@@ -21,12 +23,10 @@ suspend fun printWorld() {
     delay(1000L)
     println("World!")
 }
-*/
 
 
-/*
-EXAMPLE 2: SIMPLE EXAMPLE OF runBlocking scope, custom scope, launch, delay
-fun main() = runBlocking {
+//EXAMPLE 2: SIMPLE EXAMPLE OF runBlocking scope, custom scope, launch, delay
+private fun main2() = runBlocking {
     println("coroutine context: " + this.coroutineContext + " thread: " + Thread.currentThread().name)
     printHelloWorld()
 }
@@ -39,11 +39,10 @@ suspend fun printHelloWorld() = coroutineScope {
     }
     println("Hello")
 }
-*/
 
-/*
-EXAMPLE 3: SIMPLE EXAMPLE OF runBlocking scope, custom scope, multiple launch, delay
-fun main() = runBlocking {
+
+//EXAMPLE 3: SIMPLE EXAMPLE OF runBlocking scope, custom scope, multiple launch, delay
+private fun main3() = runBlocking {
     println("inside main scope, coroutine context: " + this.coroutineContext + " thread: " + Thread.currentThread().name)
     printHelloWorlds()
 }
@@ -62,11 +61,10 @@ suspend fun printHelloWorlds() = coroutineScope {
     }
     println("Hello")
 }
-*/
 
-/*
-EXAMPLE 4: SIMPLE EXAMPLE OF runBlocking scope, custom scope, job, yield, join
-fun main() = runBlocking {
+
+//EXAMPLE 4: SIMPLE EXAMPLE OF runBlocking scope, custom scope, job, yield, join
+private fun main4() = runBlocking {
     // launch a new coroutine and keep a reference to its Job
     val job = launch {
         delay(1000L)
@@ -76,11 +74,10 @@ fun main() = runBlocking {
     job.join() // waits until all child coroutines under this job scope complete
     println("Done")
 }
-*/
 
 
 //Coroutines ARE light-weight
-fun main() = runBlocking {
+private fun main5() = runBlocking {
     repeat(100_00) {
         // launch a lot of coroutines
         launch {
@@ -92,8 +89,7 @@ fun main() = runBlocking {
 
 
 //this will give (Exception in thread "main" java.lang.OutOfMemoryError: unable to create new native thread)
-/*
-fun main() {
+private fun main6() {
     for (i in 1..10000) {
         thread {
             Thread.sleep(5000L)
@@ -101,4 +97,3 @@ fun main() {
         }
     }
 }
-*/
