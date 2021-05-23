@@ -9,8 +9,6 @@ import kotlin.concurrent.thread
 /**
  * Created by Ganesh Padhayay on 22/05/21.
  */
-
-
 //EXAMPLE 1: SIMPLE EXAMPLE OF runBlocking scope, launch, delay
 fun main() = runBlocking {
     launch {
@@ -86,7 +84,6 @@ private fun main5() = runBlocking {
         }
     }
 }
-
 
 //this will give (Exception in thread "main" java.lang.OutOfMemoryError: unable to create new native thread)
 private fun main6() {
