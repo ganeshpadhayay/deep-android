@@ -24,7 +24,7 @@
         <activity android:name=".multithreading.mvvmcoroutines.ui.CoroutinesExampleActivity" />
         <activity android:name=".ktx.KTXExampleActivity" />
         <activity android:name=".multithreading.MultiThreadingActivity" />
-
+        <activity android:name=".scopestorage.ScopeStorageExampleActivity" />
 
         <!-- this is to avoid the double initialization of work manager -->
         <provider

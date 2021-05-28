@@ -18,6 +18,12 @@ android {
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
     }
 
     buildTypes {
@@ -33,15 +39,14 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    dataBinding {
-        enabled true
-    }
 }
 
 dependencies {
     //dependencies are defined in ext arrays in main project build.gradle file
-    implementation libraries
+    implementation libraries, ktxlib_libraries_impl
+
     kapt librariesKapt
+
     debugImplementation librariesDebug
 
     androidTestImplementation androidTestLibraries

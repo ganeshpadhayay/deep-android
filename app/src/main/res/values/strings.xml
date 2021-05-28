@@ -18,5 +18,6 @@
     <string name="multithreading">Multithreading</string>
     <string name="basic_coroutines_in_mvvm">Coroutines MVVM Example</string>
     <string name="coroutines_basics">Coroutines Basics</string>
+    <string name="scope_storage">Scope Storage</string>
 
 </resources>
