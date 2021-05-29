@@ -9,37 +9,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ganesh.deep_android.databinding.ItemPhotoBinding
 import com.example.ganesh.deep_android.scopestorage.bean.InternalStoragePhoto
 
-class InternalStoragePhotoAdapter(
-    private val onPhotoClick: (InternalStoragePhoto) -> Unit
-) : ListAdapter<InternalStoragePhoto, InternalStoragePhotoAdapter.PhotoViewHolder>(Companion) {
+class InternalStoragePhotoAdapter(private val onPhotoClick: (InternalStoragePhoto) -> Unit) : ListAdapter<InternalStoragePhoto, InternalStoragePhotoAdapter.PhotoViewHolder>(Companion) {
 
-    inner class PhotoViewHolder(val binding: ItemPhotoBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class PhotoViewHolder(val binding: ItemPhotoBinding) : RecyclerView.ViewHolder(binding.root)
 
     companion object : DiffUtil.ItemCallback<InternalStoragePhoto>() {
-        override fun areItemsTheSame(
-            oldItem: InternalStoragePhoto,
-            newItem: InternalStoragePhoto
-        ): Boolean {
+        override fun areItemsTheSame(oldItem: InternalStoragePhoto, newItem: InternalStoragePhoto): Boolean {
             return oldItem.name == newItem.name
         }
 
-        override fun areContentsTheSame(
-            oldItem: InternalStoragePhoto,
-            newItem: InternalStoragePhoto
-        ): Boolean {
+        override fun areContentsTheSame(oldItem: InternalStoragePhoto, newItem: InternalStoragePhoto): Boolean {
             return oldItem.name == newItem.name && oldItem.bmp.sameAs(newItem.bmp)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
-        return PhotoViewHolder(
-            ItemPhotoBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+        return PhotoViewHolder(ItemPhotoBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
