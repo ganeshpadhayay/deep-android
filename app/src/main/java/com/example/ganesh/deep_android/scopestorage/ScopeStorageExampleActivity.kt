@@ -2,6 +2,8 @@ package com.example.ganesh.deep_android.scopestorage
 
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.annotation.SuppressLint
+import android.app.RecoverableSecurityException
 import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
@@ -9,11 +11,13 @@ import android.content.pm.PackageManager
 import android.database.ContentObserver
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -32,7 +36,6 @@ import java.io.IOException
 import java.util.*
 
 class ScopeStorageExampleActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityScopeStorageExampleBinding
 
     private lateinit var internalStoragePhotoAdapter: InternalStoragePhotoAdapter
@@ -40,9 +43,13 @@ class ScopeStorageExampleActivity : AppCompatActivity() {
 
     private var readPermissionGranted: Boolean = false
     private var writePermissionGranted: Boolean = false
+
     private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
+    private lateinit var intentSenderLauncher: ActivityResultLauncher<IntentSenderRequest>
 
     private lateinit var contentObserver: ContentObserver
+
+    private var deletedImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +69,10 @@ class ScopeStorageExampleActivity : AppCompatActivity() {
         }
 
         externalStoragePhotoAdapter = SharedPhotoAdapter {
+            lifecycleScope.launch {
+                deletePhotoFromExternalStorage(it.contentUri)
+                deletedImageUri = it.contentUri
+            }
         }
 
         setupExternalStorageRecyclerView()
@@ -79,6 +90,19 @@ class ScopeStorageExampleActivity : AppCompatActivity() {
         }
 
         updateOrRequestPermission()
+
+        intentSenderLauncher = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
+            if (it.resultCode == RESULT_OK) {
+                if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
+                    lifecycleScope.launch {
+                        deletePhotoFromExternalStorage(deletedImageUri ?: return@launch)
+                    }
+                }
+                Toast.makeText(this@ScopeStorageExampleActivity, "Photo deleted successfully.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this@ScopeStorageExampleActivity, "Failed to delete photo.", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         val takePhoto = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) {
             lifecycleScope.launch {
@@ -185,6 +209,7 @@ class ScopeStorageExampleActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("BlockingMethodInNonBlockingContext")
     private suspend fun savePhotoInInternalStorage(fileName: String, bmp: Bitmap): Boolean {
         return withContext(Dispatchers.IO) {
             try {
@@ -201,6 +226,8 @@ class ScopeStorageExampleActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("BlockingMethodInNonBlockingContext")
+    @SuppressLint("InlinedApi")
     private suspend fun savePhotoToExternalStorage(displayName: String, bmp: Bitmap): Boolean {
         return withContext(Dispatchers.IO) {
             val imageCollection = sdk29AndAbove {
@@ -230,6 +257,7 @@ class ScopeStorageExampleActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("InlinedApi")
     private suspend fun loadPhotoFromExternalStorage(): List<SharedStoragePhoto> {
         return withContext(Dispatchers.IO) {
             val collection = sdk29AndAbove {
@@ -266,6 +294,34 @@ class ScopeStorageExampleActivity : AppCompatActivity() {
                 }
                 photos.toList()
             } ?: listOf()
+        }
+    }
+
+    private suspend fun deletePhotoFromExternalStorage(photoUri: Uri) {
+        withContext(Dispatchers.IO) {
+            try {
+                //for 28 and below
+                contentResolver.delete(photoUri, null, null)
+            } catch (e: SecurityException) {
+                val intentSender = when {
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> {
+                        //for 30
+                        MediaStore.createDeleteRequest(contentResolver, listOf(photoUri)).intentSender
+                    }
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
+                        //for 29
+                        val recoverableSecurityException = e as? RecoverableSecurityException
+                        recoverableSecurityException?.userAction?.actionIntent?.intentSender
+                    }
+                    else -> null
+                }
+
+                intentSender?.let { sender ->
+                    intentSenderLauncher.launch(
+                            IntentSenderRequest.Builder(sender).build()
+                    )
+                }
+            }
         }
     }
 
