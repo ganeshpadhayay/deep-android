@@ -47,17 +47,17 @@ class DeepestLeavesSum {
 
     public int deepestLeavesSum(TreeNode root) {
         int h = height(root);
-        return addValuesAtGivenLevel(root, h, 0);
+        return addValuesAtGivenLevel(root, h);
     }
 
     /* Print nodes at the current level */
-    private static int addValuesAtGivenLevel(TreeNode root, int level, int sum) {
+    private static int addValuesAtGivenLevel(TreeNode root, int level) {
         if (root == null)
             return 0;
         if (level == 1)
             return root.val;
         else if (level > 1) {
-            return addValuesAtGivenLevel(root.left, level - 1, sum) + addValuesAtGivenLevel(root.right, level-1, sum);
+            return addValuesAtGivenLevel(root.left, level - 1) + addValuesAtGivenLevel(root.right, level-1);
         }
         return 0;
     }
