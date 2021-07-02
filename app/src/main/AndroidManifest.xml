@@ -4,7 +4,6 @@
     package="com.example.ganesh.deep_android">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
@@ -28,6 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".multithreading.javamultithreading.JavaMultiThreadingActivity"
+            android:label="Java Multithreading" />
         <activity
             android:name=".databinding.DataBindingExampleActivity"
             android:label="Data Binding Example" />

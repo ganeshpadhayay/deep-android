@@ -19,5 +19,8 @@
     <string name="basic_coroutines_in_mvvm">Coroutines MVVM Example</string>
     <string name="coroutines_basics">Coroutines Basics</string>
     <string name="scope_storage">Scope Storage</string>
+    <string name="java_multithreading">Java multithreading</string>
+    <string name="start_thread_1">start thread 1</string>
+    <string name="start_thread_2">start thread 2</string>
 
 </resources>
